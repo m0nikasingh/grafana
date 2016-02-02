@@ -19,7 +19,7 @@ func init() {
 }
 
 func GetDataSourceById(query *m.GetDataSourceByIdQuery) error {
-	sess := x.Limit(100, 0).Where("org_id=? AND id=?", query.OrgId, query.Id)
+	sess := x.Limit(500, 0).Where("org_id=? AND id=?", query.OrgId, query.Id)
 	has, err := sess.Get(&query.Result)
 
 	if !has {
@@ -29,7 +29,7 @@ func GetDataSourceById(query *m.GetDataSourceByIdQuery) error {
 }
 
 func GetDataSourceByName(query *m.GetDataSourceByNameQuery) error {
-	sess := x.Limit(100, 0).Where("org_id=? AND name=?", query.OrgId, query.Name)
+	sess := x.Limit(500, 0).Where("org_id=? AND name=?", query.OrgId, query.Name)
 	has, err := sess.Get(&query.Result)
 
 	if !has {
@@ -39,7 +39,7 @@ func GetDataSourceByName(query *m.GetDataSourceByNameQuery) error {
 }
 
 func GetDataSources(query *m.GetDataSourcesQuery) error {
-	sess := x.Limit(100, 0).Where("org_id=?", query.OrgId).Asc("name")
+	sess := x.Limit(500, 0).Where("org_id=?", query.OrgId).Asc("name")
 
 	query.Result = make([]*m.DataSource, 0)
 	return sess.Find(&query.Result)
